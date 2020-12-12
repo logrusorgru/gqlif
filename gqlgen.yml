@@ -1,0 +1,23 @@
+
+schema:
+  - 'schema/*.graphqls'
+
+exec:
+  filename: internal/graph/server/server.go
+  package: server
+
+model:
+  filename: internal/model/models_gen.go
+  package: model
+
+resolver:
+  layout: follow-schema
+  dir: 'internal/resolver/'
+  package: resolver
+
+struct_tag: json
+
+autobind:
+  - "github.com/logrusorgru/gqlif/internal/directives"
+  - "github.com/logrusorgru/gqlif/internal/inputs"
+  - "github.com/logrusorgru/gqlif/internal/types"/inputs"

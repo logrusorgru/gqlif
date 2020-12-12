@@ -1,0 +1,40 @@
+
+directive @allowValueType (field: String!, allow: [ValueTypeAllow!]) on
+	INPUT_FIELD_DEFINITION |
+	FIELD_DEFINITION
+
+enum ValueType {
+	ONE
+	TWO
+}
+
+input ValueTypeAllow {
+	valueType: ValueType!
+	allow:     Boolean!
+}
+
+input InputValue {
+	name:      String!
+	valueType: ValueType! @allowValueType (field: "valueType", allow: [
+		ValueTypeAllow{valueType: ONE, allow: true},
+		ValueTypeAllow{valueType: TWO, allow: true}
+	])
+}
+
+type Value {
+	name:      String!
+	valueType: ValueType!
+}
+
+type Query {
+	get (name: String!): Value!
+}
+
+type Mutation {
+	set (name: String!, value: InputValue!): Value!
+}
+
+schema {
+    query: Query
+    mutation: Mutation
+}
