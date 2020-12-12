@@ -11,12 +11,11 @@ import (
 	"sync"
 	"sync/atomic"
 
+	"github.com/99designs/gqlgen/graphql"
+	"github.com/99designs/gqlgen/graphql/introspection"
 	"github.com/logrusorgru/gqlif/internal/directives"
 	"github.com/logrusorgru/gqlif/internal/inputs"
 	"github.com/logrusorgru/gqlif/internal/types"
-
-	"github.com/99designs/gqlgen/graphql"
-	"github.com/99designs/gqlgen/graphql/introspection"
 	gqlparser "github.com/vektah/gqlparser/v2"
 	"github.com/vektah/gqlparser/v2/ast"
 )
@@ -186,7 +185,7 @@ func (ec *executionContext) introspectType(name string) (*introspection.Type, er
 }
 
 var sources = []*ast.Source{
-	{Name: "schema/schema.graphqls", Input: `
+	{Name: "internal/schema/schema.graphqls", Input: `
 directive @allowValueType (field: String!, allow: [ValueTypeAllow!]) on
 	INPUT_FIELD_DEFINITION |
 	FIELD_DEFINITION
@@ -249,7 +248,7 @@ func (ec *executionContext) dir_allowValueType_args(ctx context.Context, rawArgs
 	var arg1 []*directives.ValueTypeAllow
 	if tmp, ok := rawArgs["allow"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("allow"))
-		arg1, err = ec.unmarshalOValueTypeAllow2ᚕᚖgqlifᚋdirectivesᚐValueTypeAllowᚄ(ctx, tmp)
+		arg1, err = ec.unmarshalOValueTypeAllow2ᚕᚖgithubᚗcomᚋlogrusorgruᚋgqlifᚋinternalᚋdirectivesᚐValueTypeAllowᚄ(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -273,7 +272,7 @@ func (ec *executionContext) field_Mutation_set_args(ctx context.Context, rawArgs
 	var arg1 inputs.InputValue
 	if tmp, ok := rawArgs["value"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("value"))
-		arg1, err = ec.unmarshalNInputValue2gqlifᚋinputsᚐInputValue(ctx, tmp)
+		arg1, err = ec.unmarshalNInputValue2githubᚗcomᚋlogrusorgruᚋgqlifᚋinternalᚋinputsᚐInputValue(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -389,7 +388,7 @@ func (ec *executionContext) _Mutation_set(ctx context.Context, field graphql.Col
 	}
 	res := resTmp.(*types.Value)
 	fc.Result = res
-	return ec.marshalNValue2ᚖgqlifᚋtypesᚐValue(ctx, field.Selections, res)
+	return ec.marshalNValue2ᚖgithubᚗcomᚋlogrusorgruᚋgqlifᚋinternalᚋtypesᚐValue(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Query_get(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -431,7 +430,7 @@ func (ec *executionContext) _Query_get(ctx context.Context, field graphql.Collec
 	}
 	res := resTmp.(*types.Value)
 	fc.Result = res
-	return ec.marshalNValue2ᚖgqlifᚋtypesᚐValue(ctx, field.Selections, res)
+	return ec.marshalNValue2ᚖgithubᚗcomᚋlogrusorgruᚋgqlifᚋinternalᚋtypesᚐValue(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) _Query___type(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -572,7 +571,7 @@ func (ec *executionContext) _Value_valueType(ctx context.Context, field graphql.
 	}
 	res := resTmp.(types.ValueType)
 	fc.Result = res
-	return ec.marshalNValueType2gqlifᚋtypesᚐValueType(ctx, field.Selections, res)
+	return ec.marshalNValueType2githubᚗcomᚋlogrusorgruᚋgqlifᚋinternalᚋtypesᚐValueType(ctx, field.Selections, res)
 }
 
 func (ec *executionContext) ___Directive_name(ctx context.Context, field graphql.CollectedField, obj *introspection.Directive) (ret graphql.Marshaler) {
@@ -1681,14 +1680,14 @@ func (ec *executionContext) unmarshalInputInputValue(ctx context.Context, obj in
 
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("valueType"))
 			directive0 := func(ctx context.Context) (interface{}, error) {
-				return ec.unmarshalNValueType2gqlifᚋtypesᚐValueType(ctx, v)
+				return ec.unmarshalNValueType2githubᚗcomᚋlogrusorgruᚋgqlifᚋinternalᚋtypesᚐValueType(ctx, v)
 			}
 			directive1 := func(ctx context.Context) (interface{}, error) {
 				field, err := ec.unmarshalNString2string(ctx, "valueType")
 				if err != nil {
 					return nil, err
 				}
-				allow, err := ec.unmarshalOValueTypeAllow2ᚕᚖgqlifᚋdirectivesᚐValueTypeAllowᚄ(ctx, []interface{}{"ValueTypeAllow", map[string]interface{}{"allow": true, "valueType": "ONE"}, "ValueTypeAllow", map[string]interface{}{"allow": true, "valueType": "TWO"}})
+				allow, err := ec.unmarshalOValueTypeAllow2ᚕᚖgithubᚗcomᚋlogrusorgruᚋgqlifᚋinternalᚋdirectivesᚐValueTypeAllowᚄ(ctx, []interface{}{"ValueTypeAllow", map[string]interface{}{"allow": true, "valueType": "ONE"}, "ValueTypeAllow", map[string]interface{}{"allow": true, "valueType": "TWO"}})
 				if err != nil {
 					return nil, err
 				}
@@ -1705,7 +1704,7 @@ func (ec *executionContext) unmarshalInputInputValue(ctx context.Context, obj in
 			if data, ok := tmp.(types.ValueType); ok {
 				it.ValueType = data
 			} else {
-				err := fmt.Errorf(`unexpected type %T from directive, should be gqlif/types.ValueType`, tmp)
+				err := fmt.Errorf(`unexpected type %T from directive, should be github.com/logrusorgru/gqlif/internal/types.ValueType`, tmp)
 				return it, graphql.ErrorOnPath(ctx, err)
 			}
 		}
@@ -1724,7 +1723,7 @@ func (ec *executionContext) unmarshalInputValueTypeAllow(ctx context.Context, ob
 			var err error
 
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("valueType"))
-			it.ValueType, err = ec.unmarshalNValueType2gqlifᚋtypesᚐValueType(ctx, v)
+			it.ValueType, err = ec.unmarshalNValueType2githubᚗcomᚋlogrusorgruᚋgqlifᚋinternalᚋtypesᚐValueType(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -2117,7 +2116,7 @@ func (ec *executionContext) marshalNBoolean2bool(ctx context.Context, sel ast.Se
 	return res
 }
 
-func (ec *executionContext) unmarshalNInputValue2gqlifᚋinputsᚐInputValue(ctx context.Context, v interface{}) (inputs.InputValue, error) {
+func (ec *executionContext) unmarshalNInputValue2githubᚗcomᚋlogrusorgruᚋgqlifᚋinternalᚋinputsᚐInputValue(ctx context.Context, v interface{}) (inputs.InputValue, error) {
 	res, err := ec.unmarshalInputInputValue(ctx, v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
@@ -2137,11 +2136,11 @@ func (ec *executionContext) marshalNString2string(ctx context.Context, sel ast.S
 	return res
 }
 
-func (ec *executionContext) marshalNValue2gqlifᚋtypesᚐValue(ctx context.Context, sel ast.SelectionSet, v types.Value) graphql.Marshaler {
+func (ec *executionContext) marshalNValue2githubᚗcomᚋlogrusorgruᚋgqlifᚋinternalᚋtypesᚐValue(ctx context.Context, sel ast.SelectionSet, v types.Value) graphql.Marshaler {
 	return ec._Value(ctx, sel, &v)
 }
 
-func (ec *executionContext) marshalNValue2ᚖgqlifᚋtypesᚐValue(ctx context.Context, sel ast.SelectionSet, v *types.Value) graphql.Marshaler {
+func (ec *executionContext) marshalNValue2ᚖgithubᚗcomᚋlogrusorgruᚋgqlifᚋinternalᚋtypesᚐValue(ctx context.Context, sel ast.SelectionSet, v *types.Value) graphql.Marshaler {
 	if v == nil {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			ec.Errorf(ctx, "must not be null")
@@ -2151,17 +2150,17 @@ func (ec *executionContext) marshalNValue2ᚖgqlifᚋtypesᚐValue(ctx context.C
 	return ec._Value(ctx, sel, v)
 }
 
-func (ec *executionContext) unmarshalNValueType2gqlifᚋtypesᚐValueType(ctx context.Context, v interface{}) (types.ValueType, error) {
+func (ec *executionContext) unmarshalNValueType2githubᚗcomᚋlogrusorgruᚋgqlifᚋinternalᚋtypesᚐValueType(ctx context.Context, v interface{}) (types.ValueType, error) {
 	var res types.ValueType
 	err := res.UnmarshalGQL(v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
-func (ec *executionContext) marshalNValueType2gqlifᚋtypesᚐValueType(ctx context.Context, sel ast.SelectionSet, v types.ValueType) graphql.Marshaler {
+func (ec *executionContext) marshalNValueType2githubᚗcomᚋlogrusorgruᚋgqlifᚋinternalᚋtypesᚐValueType(ctx context.Context, sel ast.SelectionSet, v types.ValueType) graphql.Marshaler {
 	return v
 }
 
-func (ec *executionContext) unmarshalNValueTypeAllow2ᚖgqlifᚋdirectivesᚐValueTypeAllow(ctx context.Context, v interface{}) (*directives.ValueTypeAllow, error) {
+func (ec *executionContext) unmarshalNValueTypeAllow2ᚖgithubᚗcomᚋlogrusorgruᚋgqlifᚋinternalᚋdirectivesᚐValueTypeAllow(ctx context.Context, v interface{}) (*directives.ValueTypeAllow, error) {
 	res, err := ec.unmarshalInputValueTypeAllow(ctx, v)
 	return &res, graphql.ErrorOnPath(ctx, err)
 }
@@ -2443,7 +2442,7 @@ func (ec *executionContext) marshalOString2ᚖstring(ctx context.Context, sel as
 	return graphql.MarshalString(*v)
 }
 
-func (ec *executionContext) unmarshalOValueTypeAllow2ᚕᚖgqlifᚋdirectivesᚐValueTypeAllowᚄ(ctx context.Context, v interface{}) ([]*directives.ValueTypeAllow, error) {
+func (ec *executionContext) unmarshalOValueTypeAllow2ᚕᚖgithubᚗcomᚋlogrusorgruᚋgqlifᚋinternalᚋdirectivesᚐValueTypeAllowᚄ(ctx context.Context, v interface{}) ([]*directives.ValueTypeAllow, error) {
 	if v == nil {
 		return nil, nil
 	}
@@ -2459,7 +2458,7 @@ func (ec *executionContext) unmarshalOValueTypeAllow2ᚕᚖgqlifᚋdirectivesᚐ
 	res := make([]*directives.ValueTypeAllow, len(vSlice))
 	for i := range vSlice {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithIndex(i))
-		res[i], err = ec.unmarshalNValueTypeAllow2ᚖgqlifᚋdirectivesᚐValueTypeAllow(ctx, vSlice[i])
+		res[i], err = ec.unmarshalNValueTypeAllow2ᚖgithubᚗcomᚋlogrusorgruᚋgqlifᚋinternalᚋdirectivesᚐValueTypeAllow(ctx, vSlice[i])
 		if err != nil {
 			return nil, err
 		}
