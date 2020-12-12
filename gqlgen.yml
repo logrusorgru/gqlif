@@ -1,6 +1,6 @@
 
 schema:
-  - 'schema/*.graphqls'
+  - internal/schema/*.graphqls
 
 exec:
   filename: internal/graph/server/server.go
@@ -12,12 +12,12 @@ model:
 
 resolver:
   layout: follow-schema
-  dir: 'internal/resolver/'
+  dir: internal/resolver/
   package: resolver
 
 struct_tag: json
 
 autobind:
-  - "github.com/logrusorgru/gqlif/internal/directives"
-  - "github.com/logrusorgru/gqlif/internal/inputs"
-  - "github.com/logrusorgru/gqlif/internal/types"/inputs"
+  - github.com/logrusorgru/gqlif/internal/directives
+  - github.com/logrusorgru/gqlif/internal/inputs
+  - github.com/logrusorgru/gqlif/internal/types/inputs
